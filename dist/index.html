@@ -65,6 +65,45 @@
       border: 1px solid rgba(255,255,255,0.1);
       pointer-events: none; z-index: 10;
     }
+
+    /* Mobile touch controls */
+    .touch-controls { display: none; }
+    @media (max-width: 768px), (pointer: coarse) {
+      #controls-hint { display: none !important; }
+      .touch-controls { display: block; }
+    }
+
+    #joystick-zone {
+      position: fixed; bottom: 20px; left: 20px; width: 150px; height: 150px;
+      z-index: 20; touch-action: none;
+    }
+    #joystick-base {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3);
+      position: absolute; bottom: 10px; left: 10px;
+    }
+    #joystick-thumb {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(255,255,255,0.5); position: absolute;
+      top: 35px; left: 35px; transition: none;
+    }
+
+    #touch-buttons {
+      position: fixed; bottom: 20px; right: 20px; z-index: 20;
+      display: flex; gap: 12px; flex-direction: column; align-items: flex-end;
+    }
+
+    .touch-btn {
+      width: 64px; height: 64px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4);
+      background: rgba(0,0,0,0.4); color: white; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px); touch-action: manipulation;
+      -webkit-user-select: none; user-select: none;
+    }
+    .touch-btn:active { background: rgba(255,255,255,0.3); transform: scale(0.9); }
+
+    #btn-jump { background: rgba(33,150,243,0.4); }
+    #btn-attack { background: rgba(244,67,54,0.4); }
     
     #title-screen {
       position: fixed; inset: 0; z-index: 100;
@@ -126,7 +165,7 @@
       transition: opacity 0.5s;
     }
   </style>
-  <script type="module" crossorigin src="/assets/index-BqAUI3-N.js"></script>
+  <script type="module" crossorigin src="/assets/index-DoBDpY4t.js"></script>
 </head>
 <body>
   <div id="title-screen">
@@ -151,6 +190,19 @@
   <div id="crosshair"></div>
   <div id="damage-flash"></div>
   <div id="message"></div>
+
+  <!-- Mobile touch controls -->
+  <div class="touch-controls">
+    <div id="joystick-zone">
+      <div id="joystick-base">
+        <div id="joystick-thumb"></div>
+      </div>
+    </div>
+    <div id="touch-buttons">
+      <div class="touch-btn" id="btn-attack" style="order:1">⚔️</div>
+      <div class="touch-btn" id="btn-jump" style="order:2">⬆️</div>
+    </div>
+  </div>
   
 </body>
 </html>
